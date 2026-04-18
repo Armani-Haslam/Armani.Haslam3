@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harry Potter House Quiz</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Georgia, serif;
+      background: linear-gradient(135deg, #1b1b2f, #3b1f2b, #1f3b3b);
+      color: #f8f4e3;
+      min-height: 100vh;
+    }
+
+    .top-nav {
+      width: 100%;
+      background: rgba(10, 10, 20, 0.9);
+      border-bottom: 2px solid #d4af37;
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #f8f4e3;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #f5d76e;
+    }
+
+    .page-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      min-height: calc(100vh - 70px);
+      box-sizing: border-box;
+    }
+
+    .container {
+      background: rgba(20, 20, 30, 0.92);
+      width: 100%;
+      max-width: 800px;
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      border: 2px solid #d4af37;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 2.3rem;
+      color: #f5d76e;
+    }
+
+    .subtitle {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ddd;
+      font-size: 1.05rem;
+    }
+
+    .question {
+      margin-bottom: 28px;
+      padding: 20px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .question h3 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      color: #fff0b3;
+      font-size: 1.2rem;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0;
+      padding: 10px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    label:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+      transform: scale(1.1);
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      background: #d4af37;
+      color: #1a1a1a;
+      border: none;
+      padding: 14px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background: #f2cb4d;
+      transform: translateY(-1px);
+    }
+
+    .result {
+      margin-top: 30px;
+      text-align: center;
+      padding: 24px;
+      border-radius: 16px;
+      display: none;
+    }
+
+    .result h2 {
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+
+    .result p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .gryffindor {
+      background: rgba(116, 0, 1, 0.8);
+      border: 2px solid #d3a625;
+    }
+
+    .ravenclaw {
+      background: rgba(14, 26, 64, 0.85);
+      border: 2px solid #946b2d;
+    }
+
+    .hufflepuff {
+      background: rgba(44, 34, 0, 0.85);
+      border: 2px solid #ffdb58;
+    }
+
+    .slytherin {
+      background: rgba(10, 54, 38, 0.85);
+      border: 2px solid #c0c0c0;
+    }
+
+    .reset-btn {
+      margin-top: 16px;
+      background: #ffffff;
+      color: #222;
+    }
+
+    .reset-btn:hover {
+      background: #e8e8e8;
+    }
+
+    .error {
+      color: #ff9e9e;
+      text-align: center;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 22px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .question h3 {
+        font-size: 1.05rem;
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="top-nav">
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="resume.html">Resume</a>
+      <a href="ChurchofJesusChrist.html">Church</a>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+    <div class="container">
+      <h1>What Hogwarts House Do You Belong In?</h1>
+      <p class="subtitle">Answer these 5 questions and get sorted into your Hogwarts house.</p>
+
+      <form id="quizForm">
+        <div class="question">
+          <h3>1. Which trait matters most to you?</h3>
+          <label><input type="radio" name="q1" value="Gryffindor"> Bravery</label>
+          <label><input type="radio" name="q1" value="Ravenclaw"> Intelligence</label>
+          <label><input type="radio" name="q1" value="Hufflepuff"> Loyalty</label>
+          <label><input type="radio" name="q1" value="Slytherin"> Ambition</label>
+        </div>
+
+        <div class="question">
+          <h3>2. What would you rather be known for?</h3>
+          <label><input type="radio" name="q2" value="Gryffindor"> Courage under pressure</label>
+          <label><input type="radio" name="q2" value="Ravenclaw"> Creative thinking</label>
+          <label><input type="radio" name="q2" value="Hufflepuff"> Kindness and fairness</label>
+          <label><input type="radio" name="q2" value="Slytherin"> Leadership and success</label>
+        </div>
+
+        <div class="question">
+          <h3>3. If you had free time at Hogwarts, what would you do?</h3>
+          <label><input type="radio" name="q3" value="Gryffindor"> Sneak off on an adventure</label>
+          <label><input type="radio" name="q3" value="Ravenclaw"> Read in the library</label>
+          <label><input type="radio" name="q3" value="Hufflepuff"> Hang out with friends</label>
+          <label><input type="radio" name="q3" value="Slytherin"> Plan how to get ahead</label>
+        </div>
+
+        <div class="question">
+          <h3>4. Which class sounds best to you?</h3>
+          <label><input type="radio" name="q4" value="Gryffindor"> Defense Against the Dark Arts</label>
+          <label><input type="radio" name="q4" value="Ravenclaw"> Charms</label>
+          <label><input type="radio" name="q4" value="Hufflepuff"> Herbology</label>
+          <label><input type="radio" name="q4" value="Slytherin"> Potions</label>
+        </div>
+
+        <div class="question">
+          <h3>5. What kind of person do others usually see you as?</h3>
+          <label><input type="radio" name="q5" value="Gryffindor"> Bold</label>
+          <label><input type="radio" name="q5" value="Ravenclaw"> Thoughtful</label>
+          <label><input type="radio" name="q5" value="Hufflepuff"> Warm</label>
+          <label><input type="radio" name="q5" value="Slytherin"> Determined</label>
+        </div>
+
+        <button type="button" class="btn" onclick="sortHouse()">Get Sorted</button>
+        <div id="errorMsg" class="error"></div>
+      </form>
+
+      <div id="resultBox" class="result">
+        <h2 id="houseName"></h2>
+        <p id="houseDescription"></p>
+        <button class="btn reset-btn" onclick="resetQuiz()">Take Quiz Again</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function sortHouse() {
+      const form = document.getElementById("quizForm");
+      const errorMsg = document.getElementById("errorMsg");
+      const resultBox = document.getElementById("resultBox");
+      const houseName = document.getElementById("houseName");
+      const houseDescription = document.getElementById("houseDescription");
+
+      errorMsg.textContent = "";
+
+      const answers = [];
+      for (let i = 1; i <= 5; i++) {
+        const selected = form.querySelector(`input[name="q${i}"]:checked`);
+        if (!selected) {
+          errorMsg.textContent = "Please answer all 5 questions before getting sorted.";
+          return;
+        }
+        answers.push(selected.value);
+      }
+
+      const scores = {
+        Gryffindor: 0,
+        Ravenclaw: 0,
+        Hufflepuff: 0,
+        Slytherin: 0
+      };
+
+      answers.forEach(answer => {
+        scores[answer]++;
+      });
+
+      let sortedHouse = "Gryffindor";
+      let highestScore = 0;
+
+      for (const house in scores) {
+        if (scores[house] > highestScore) {
+          highestScore = scores[house];
+          sortedHouse = house;
+        }
+      }
+
+      const descriptions = {
+        Gryffindor: "You belong in Gryffindor! You are brave, bold, and willing to take action. You stand up for what is right and aren’t afraid of a challenge.",
+        Ravenclaw: "You belong in Ravenclaw! You are thoughtful, curious, and intelligent. You love learning, ideas, and seeing the world in a deeper way.",
+        Hufflepuff: "You belong in Hufflepuff! You are loyal, kind, and dependable. People trust you because you care deeply and treat others well.",
+        Slytherin: "You belong in Slytherin! You are ambitious, determined, and driven. You know what you want and you are not afraid to work for it."
+      };
+
+      resultBox.className = "result";
+      resultBox.classList.add(sortedHouse.toLowerCase());
+
+      houseName.textContent = sortedHouse;
+      houseDescription.textContent = descriptions[sortedHouse];
+      resultBox.style.display = "block";
+
+      resultBox.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function resetQuiz() {
+      document.getElementById("quizForm").reset();
+      document.getElementById("resultBox").style.display = "none";
+      document.getElementById("errorMsg").textContent = "";
+      document.getElementById("resultBox").className = "result";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>
